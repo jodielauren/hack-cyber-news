@@ -8,3 +8,7 @@ h1 {
 .thumbnail {
     display: block;
 }
+
+body {
+    background-color: #1B1E4A;
+}
