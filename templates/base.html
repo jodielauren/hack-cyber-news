@@ -11,8 +11,8 @@
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('index')}}">IL Cyber Hub</a>
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index')}}">Hub Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,14 +26,13 @@
             </li>
             </ul>
         </div>
-    </nav>
+      </nav>
     <div class="container">
         {% for message in get_flashed_messages() %}
             <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
         {% block content %} {% endblock %}
     </div>
-    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

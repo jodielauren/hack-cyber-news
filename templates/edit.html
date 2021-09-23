@@ -17,6 +17,13 @@
         <textarea name="content" placeholder="Post content"
                   class="form-control">{{ request.form['content'] or post['content'] }}</textarea>
     </div>
+
+    <div class="form-group">
+        <label for="url">URL</label>
+        <textarea name="url" placeholder="Post url"
+                  class="form-control">{{ request.form['url'] or post['url'] }}</textarea>
+    </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
