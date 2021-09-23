@@ -5,5 +5,6 @@ CREATE TABLE posts (
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    url TEXT NOT NULL
+    url TEXT NOT NULL, 
+    category TEXT NOT NULL
 );

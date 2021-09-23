@@ -23,6 +23,16 @@
                   class="form-control">{{ request.form['url'] }}</textarea>
     </div>
     <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category" value="{{ request.form['title'] }}">
+            <option value="CloudSec">CloudSec</option>
+            <option value="AppSec">AppSec</option>
+            <option value="Red Team">Red team</option>
+            <option value="Blue Team">Blue Team</option>
+            <option value="Misc">Misc</option>
+        </select>
+    </div>
+    <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>

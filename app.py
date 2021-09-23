@@ -43,13 +43,14 @@ def create():
         title = request.form['title']
         content = request.form['content']
         url = request.form['url']
+        category = request.form['category']
 
         if not title:
             flash('Title is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content, url) VALUES (?, ?, ?)',
-                         (title, content, url))
+            conn.execute('INSERT INTO posts (title, content, url, category) VALUES (?, ?, ?, ?)',
+                         (title, content, url, category))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -65,14 +66,15 @@ def edit(id):
         title = request.form['title']
         content = request.form['content']
         url = request.form['url']
+        category = request.form['category']
 
         if not title:
             flash('Title is required!')
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, content = ?, url = ?'
+            conn.execute('UPDATE posts SET title = ?, content = ?, url = ?, category = ?'
                          ' WHERE id = ?',
-                         (title, content, url, id))
+                         (title, content, url, category, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
