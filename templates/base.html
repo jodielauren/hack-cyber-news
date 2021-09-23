@@ -47,25 +47,33 @@
 
 <script>
   window.onload = fetchThumbnails()
-
+  // putting the HACK in hackathon
   function fetchThumbnails(url){
       urls = document.getElementsByClassName("url");
       console.log(urls)
       for (var x=0; x<urls.length; x++) {
-          let url = urls[x];
-          if (url.innerHTML.includes("youtube") || url.innerHTML.includes("youtu.be")) {
-              
-              let components = url.innerHTML.split("=");
-              console.log(components)
-              let youtubeid = components[1]
-              let ysrc = "https://img.youtube.com/vi/" + youtubeid + "/mqdefault.jpg"
+        let url = urls[x];
+        if (url.innerHTML.includes("you")) {
 
-              var img = document.createElement('img');
-              img.src = ysrc
-              img.className = "thumbnail"
-
-              document.getElementById(url.id).appendChild(img)
+          let youtubeid = "";
+          if (url.innerHTML.includes("youtube")) {
+            let components = url.innerHTML.split("=");
+            console.log(components)
+            youtubeid = components[1]
           }
+
+          if (url.innerHTML.includes("youtu.be")) {
+            let components = url.innerHTML.split("/");
+            youtubeid = components[3].split("?")[0]
+          }
+          
+          let ysrc = "https://img.youtube.com/vi/" + youtubeid + "/mqdefault.jpg"
+          var img = document.createElement('img');
+          img.src = ysrc
+          img.className = "thumbnail"
+
+          document.getElementById(url.id).appendChild(img)
+        }
       }
   }
 </script>
