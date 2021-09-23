@@ -82,21 +82,14 @@ def edit(id):
 
     return render_template('edit.html', post=post)
 
-    #endpoint for search
-# @app.route('/search', methods=['GET', 'POST'])
-# def search(id):
-#     if request.method == "POST":
-#         post = get_post(id)
-#         # search by author or book
-#         cursor.execute("SELECT title, content from posts WHERE content LIKE %s OR title LIKE %s", (title, content, id))
-#         conn.commit()
-#         data = cursor.fetchall()
-#         # all in the search box will return all the tuples
-#         if len(data) == 0 and post == 'all': 
-#             cursor.execute("SELECT title, content from Posts")
-#             conn.commit()
-#             data = cursor.fetchall()
-#         return render_template('search.html', data=data, id=id)
+# @app.route('/search', methods=('POST', 'GET'))
+# def search():
+#     conn = get_db_connection()
+#     query = request.args.get('q')
+#     posts = conn.execute(
+#       "SELECT title, content FROM posts WHERE body LIKE ? ",
+#       ('%'+ query +'%',)).fetchall()
+#     return render_template('search.html', posts=posts)
 
 
 @app.route('/<int:id>/delete', methods=('POST',))
@@ -108,3 +101,6 @@ def delete(id):
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('index'))
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

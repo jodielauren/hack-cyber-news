@@ -1,21 +1,16 @@
 <!-- {% extends 'base.html' %}
 {% block content %}
-
-<body>
-    <h1><center>Search</center></h1>
-    <form class="example" method="post" action="">
-        <input type="text" placeholder="Search by Category" name="post">
-        <button type="submit"><i class="fa fa-search"></i>
-        </button>
-    </form>
-    <p></p>
-    <center>
-    {% for item in data %}
-        <tr>
-            <td> {{item[0]}} by {{item[1]}}</td>
-            </br>
-        </tr>
-    {% endfor %}
-    </center>
-</body>
+{% if posts %}
+<form method="GET">
+    <input type="text" placeholder="Search by" name="q" value="{{ request.args.get('q', '') }}">
+    <button type="submit">Go</button>
+ </form>
+    <ul>
+      {% for post in posts %}
+      <li><a href="{{ url_for('blog.single', id=posts['id']) }}">{{ posts[1] }}</a></li>
+      {% endfor %}
+    </ul>
+{% else %}
+    <p>no entries</p>
+{% endif %}
 {% endblock %} -->
