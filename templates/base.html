@@ -5,14 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('index')}}">IL Cyber Hub</a>
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index')}}">Hub Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,14 +27,15 @@
             </li>
             </ul>
         </div>
-    </nav>
+        <a id="rss" href="./rss.xml"><img width="30" src="{{url_for('static', filename='rss.svg')}}" alt="RSS"></a>
+
+      </nav>
     <div class="container">
         {% for message in get_flashed_messages() %}
             <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
         {% block content %} {% endblock %}
     </div>
-    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -42,3 +44,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<script>
+  window.onload = fetchThumbnails()
+
+  function fetchThumbnails(url){
+      urls = document.getElementsByClassName("url");
+      console.log(urls)
+      for (var x=0; x<urls.length; x++) {
+          let url = urls[x];
+          if (url.innerHTML.includes("youtube") || url.innerHTML.includes("youtu.be")) {
+              
+              let components = url.innerHTML.split("=");
+              console.log(components)
+              let youtubeid = components[1]
+              let ysrc = "https://img.youtube.com/vi/" + youtubeid + "/mqdefault.jpg"
+
+              var img = document.createElement('img');
+              img.src = ysrc
+              img.className = "thumbnail"
+
+              document.getElementById(url.id).appendChild(img)
+          }
+      }
+  }
+</script>

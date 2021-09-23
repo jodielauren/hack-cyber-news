@@ -46,6 +46,8 @@ def rss():
         item = ET.SubElement(channel, "item")
         createChildElem(item, "title", rsspost['title'])
         createChildElem(item, "content", rsspost['content'])
+        createChildElem(item, "link", rsspost['url'])
+        createChildElem(item, "category", rsspost['category'])
 
 
     data = ET.tostring(rss, encoding='UTF-8', method='xml', xml_declaration=True)
@@ -81,13 +83,15 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
+        url = request.form['url']
+        category = request.form['category']
 
         if not title:
             flash('Title is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-                         (title, content))
+            conn.execute('INSERT INTO posts (title, content, url, category) VALUES (?, ?, ?, ?)',
+                         (title, content, url, category))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -102,19 +106,38 @@ def edit(id):
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
+        url = request.form['url']
+        category = request.form['category']
 
+  
         if not title:
             flash('Title is required!')
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, content = ?'
+            conn.execute('UPDATE posts SET title = ?, content = ?, url = ?, category = ?'
                          ' WHERE id = ?',
-                         (title, content, id))
+                         (title, content, url, category, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
 
     return render_template('edit.html', post=post)
+
+    #endpoint for search
+# @app.route('/search', methods=['GET', 'POST'])
+# def search(id):
+#     if request.method == "POST":
+#         post = get_post(id)
+#         # search by author or book
+#         cursor.execute("SELECT title, content from posts WHERE content LIKE %s OR title LIKE %s", (title, content, id))
+#         conn.commit()
+#         data = cursor.fetchall()
+#         # all in the search box will return all the tuples
+#         if len(data) == 0 and post == 'all': 
+#             cursor.execute("SELECT title, content from Posts")
+#             conn.commit()
+#             data = cursor.fetchall()
+#         return render_template('search.html', data=data, id=id)
 
 
 @app.route('/<int:id>/delete', methods=('POST',))
