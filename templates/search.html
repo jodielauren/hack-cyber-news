@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if posts %}
+    <ul>
+      {% for post in posts %}
+      <span class="post">
+        <span class="post-line">{{ post['title'] }}</span>
+        <span class="post-line">{{ post['content'] }}</span>
+        <span class="post-line">{{ post['url'] }}</span>
+        <span class="post-line">{{ post['created'] }}</span>
+        <span class="post-line">{{ post['category'] }}</span>
+      </span>
+      {% endfor %}
+    </ul>
+{% else %}
+    <p>no entries</p>
+{% endif %}
+{% endblock %}

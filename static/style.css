@@ -1,0 +1,48 @@
+h1 {
+    border: 2px #eee solid;
+    color: brown;
+    text-align: center;
+    padding: 10px;
+}
+
+.thumbnail {
+    display: block;
+}
+
+body {
+    background-color: #11122e !important;
+}
+
+#logo {
+    
+}
+
+.ilnav{
+    background-color: #1C1E4A !important;
+    border-bottom: thin solid white;
+}
+
+.post {
+    /* 3Es_GLS_RFLCT_DRK_01 */
+    /* /* background: linear-gradient(0deg, #13163C 26.96%, #11132F 27.97%, #10122C 28.47%, #11132F 40.05%, #141738 48.61%, #15183A 49.62%); */
+    font-family: Mic 32 New;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 120%;
+    /* border: thick solid #1B1E4A; */
+    display: block;
+ 
+    margin-bottom:  5px;
+    background: linear-gradient(0deg, rgb(19, 22, 60) 26.96%, rgb(17, 19, 47) 27.97%, rgb(16, 18, 44) 28.47%, rgb(17, 19, 47) 40.05%, rgb(20, 23, 56) 48.61%, rgb(21, 24, 58) 49.62%);
+    border-radius: 2px;
+
+
+
+
+
+}
+
+
+
+

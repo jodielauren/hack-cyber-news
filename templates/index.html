@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <h1>{% block title %} Welcome to the IL Cyber Hub {% endblock %}</h1>
+    <img id="logo" width="50%" src="{{url_for('static', filename='cyber-hub.png')}}" alt="logo">
+
     {% for post in posts %}
-        <a href="{{ url_for('post', post_id=post['id']) }}">
-            <h2>{{ post['title'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ post['created'] }}</span>
-        <a href="{{ url_for('edit', id=post['id']) }}">
-            <span class="badge badge-warning">Edit</span>
-        </a>
-        <hr>
+        <span class="post">
+            <a href="{{ url_for('post', post_id=post['id']) }}">
+                <h2>{{ post['title'] }}</h2>
+            </a>
+            <a href="{{ post['url'] }}" class="url" id="{{ post['id'] }}-url" >{{ post['url'] }}</a>
+            <span class="badge badge-primary">{{ post['created'] }}</span>
+            <a href="{{ url_for('edit', id=post['id']) }}">
+                <span class="badge badge-warning">Edit</span>
+            </a>
+            <hr>
+        </span>
+        
     {% endfor %}
 {% endblock %}

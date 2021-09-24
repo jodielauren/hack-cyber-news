@@ -1,9 +1,10 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
 <h1>{% block title %} Create a New Post {% endblock %}</h1>
 
-<form method="post">
+<form name="newpost" method="post" onsubmit="return validateForm()">
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title"
@@ -12,12 +13,39 @@
     </div>
 
     <div class="form-group">
-        <label for="content">Content</label>
-        <textarea name="content" placeholder="Post content"
+        <label for="content">Description</label>
+        <textarea name="content" placeholder="Post description"
                   class="form-control">{{ request.form['content'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="url">URL</label>
+        <textarea name="url" placeholder="Post url"
+                  class="form-control">{{ request.form['url'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category" value="{{ request.form['category'] }}">
+            <option value="CloudSec">CloudSec</option>
+            <option value="AppSec">AppSec</option>
+            <option value="Red Team">Red team</option>
+            <option value="Blue Team">Blue Team</option>
+            <option value="Misc">Misc</option>
+        </select>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+
+<script>
+
+function validateForm(){
+  let x = document.forms["newpost"]["url"].value;
+  if (!x.startsWith("https://")) {
+    alert("URL needs to start with https://");
+    return false;
+  }
+}
+
+</script>
 {% endblock %}
