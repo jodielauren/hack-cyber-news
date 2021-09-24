@@ -3,8 +3,8 @@ import sqlite3
 from sqlite3.dbapi2 import version
 from flask import Flask, render_template, request, url_for, flash, redirect, send_file, Response
 from werkzeug.exceptions import abort
-# import xml.etree
 import xml.etree.ElementTree as ET
+from random import random
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
@@ -32,6 +32,21 @@ def index():
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
     return render_template('index.html', posts=posts)
+
+@app.route('/checkspam', methods=["POST"])
+def checkspam():
+    rand = random()
+    if rand < 0.5:
+        return "bad"
+    return "good"
+
+@app.route('/threat')
+def threat():
+    return render_template('threatchecker.html')
+
+@app.route('/figma')
+def figma():
+    return render_template('figma.html')
 
 @app.route('/rss.xml')
 def rss():

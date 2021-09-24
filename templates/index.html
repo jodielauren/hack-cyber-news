@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <img id="logo" width="50%" src="{{url_for('static', filename='cyber-hub.png')}}" alt="logo">
+    <img id="hub" class="mx-auto" width="50%" src="{{url_for('static', filename='cyber-hub.png')}}" alt="logo">
 
     {% for post in posts %}
         <span class="post">
@@ -16,4 +16,5 @@
         </span>
         
     {% endfor %}
+
 {% endblock %}

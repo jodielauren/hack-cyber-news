@@ -2,28 +2,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{% block title %} Create a New Post {% endblock %}</h1>
-
+<br></br>
+<span class="ilheadings">{% block title %} Create a New Post  {% endblock %}</span>
+<br></br>
 <form name="newpost" method="post" onsubmit="return validateForm()">
     <div class="form-group">
-        <label for="title">Title</label>
+        <label class="ilparagraph" for="title">Title</label>
         <input type="text" name="title"
                placeholder="Post title" class="form-control"
                value="{{ request.form['title'] }}"></input>
     </div>
 
     <div class="form-group">
-        <label for="content">Description</label>
+        <label class="ilparagraph" for="content">Description</label>
         <textarea name="content" placeholder="Post description"
                   class="form-control">{{ request.form['content'] }}</textarea>
     </div>
     <div class="form-group">
-        <label for="url">URL</label>
-        <textarea name="url" placeholder="Post url"
+        <label class="ilparagraph" for="url">URL</label>
+        <textarea name="url" placeholder="Enter url"
                   class="form-control">{{ request.form['url'] }}</textarea>
     </div>
     <div class="form-group">
-        <label for="category">Category</label>
+        <label class="ilparagraph" for="category">Category</label>
         <select class="form-control" name="category" value="{{ request.form['category'] }}">
             <option value="CloudSec">CloudSec</option>
             <option value="AppSec">AppSec</option>
@@ -32,8 +33,9 @@
             <option value="Misc">Misc</option>
         </select>
     </div>
+    <br></br>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="ilbutton">Submit</button>
     </div>
 </form>
 

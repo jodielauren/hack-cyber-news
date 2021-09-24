@@ -1,0 +1,60 @@
+<script>
+    function checkSpam() {
+        let url = document.getElementById("spamurl");
+        let data = JSON.stringify({
+            "url" : url
+        });
+
+        $.ajax({
+            url: "/checkspam",
+            type: "post",
+            data: data,
+            async: true
+        }).done(function(data) {
+            let good = document.getElementById("good");
+            let bad = document.getElementById("bad");
+            if (data == "good") {
+                good.style.display = "block"
+                bad.style.display = "none"
+            }
+
+            if (data == "bad") {
+                bad.style.display = "block"
+                good.style.display = "none"
+            }
+            
+        }).fail(function(err) {
+            alert("error");
+    
+        });
+    }
+</script>
+
+{% extends 'base.html' %}
+{% block content %}
+<br></br>
+<span class="ilheadings">Threat Checker</span>
+<img class="cyberimg" width="25%" src="{{url_for('static', filename='cyber-hub.png')}}" alt="logo">
+<br></br>
+<span><h3 class="ilscamheading">SCAM ALERT!</h3>
+
+<p class="ilparagraph">Beware the link that you pasted is a known scam and has been reported as a dangerous malware xxxx The Nasty Bug bug booboo </p></span>
+<br></br>
+<br></br>
+<button class="ilbutton">Back </button></span>
+
+<textarea id="spamurl" placeholder="URL to Check"></textarea>
+<button class="ilbutton" onclick="checkSpam()">Check</button>
+
+<span id="good" class="spamresult">
+    <img width="30px" src="{{url_for('static', filename='checked.png')}}" alt="good">
+    <span class="ilscamheading">This link is good to go</span>
+</span>
+
+<span id="bad" class="spamresult">
+    <img width="30px" src="{{url_for('static', filename='x-button.png')}}" alt="good">
+    <span class="ilscamheading">This link is spam for sure</span>
+</span>
+
+{% endblock %}
+
