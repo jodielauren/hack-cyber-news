@@ -1,16 +1,18 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 {% if posts %}
-<form method="GET">
-    <input type="text" placeholder="Search by" name="q" value="{{ request.args.get('q', '') }}">
-    <button type="submit">Go</button>
- </form>
     <ul>
       {% for post in posts %}
-      <li><a href="{{ url_for('blog.single', id=posts['id']) }}">{{ posts[1] }}</a></li>
+      <span class="post">
+        <span class="post-line">{{ post['title'] }}</span>
+        <span class="post-line">{{ post['content'] }}</span>
+        <span class="post-line">{{ post['url'] }}</span>
+        <span class="post-line">{{ post['created'] }}</span>
+        <span class="post-line">{{ post['category'] }}</span>
+      </span>
       {% endfor %}
     </ul>
 {% else %}
     <p>no entries</p>
 {% endif %}
-{% endblock %} -->
+{% endblock %}

@@ -82,14 +82,21 @@ def edit(id):
 
     return render_template('edit.html', post=post)
 
-# @app.route('/search', methods=('POST', 'GET'))
-# def search():
-#     conn = get_db_connection()
-#     query = request.args.get('q')
-#     posts = conn.execute(
-#       "SELECT title, content FROM posts WHERE body LIKE ? ",
-#       ('%'+ query +'%',)).fetchall()
-#     return render_template('search.html', posts=posts)
+@app.route('/search', methods=('POST', 'GET'))
+def search():
+    search_item = request.form['search']
+    print(f"User has searched for {search_item}")
+
+    conn = get_db_connection()
+    posts = conn.execute(
+      "SELECT * FROM posts WHERE content LIKE ? ",
+      ('%'+ search_item +'%',)).fetchall()
+    conn.commit()
+    conn.close()
+
+    print(posts)
+    # return "hello"
+    return render_template('search.html', posts=posts)
 
 
 @app.route('/<int:id>/delete', methods=('POST',))
