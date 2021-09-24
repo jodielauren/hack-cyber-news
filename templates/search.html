@@ -1,21 +1,18 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
-
-<body>
-    <h1><center>Search</center></h1>
-    <form class="example" method="post" action="">
-        <input type="text" placeholder="Search by Category" name="post">
-        <button type="submit"><i class="fa fa-search"></i>
-        </button>
-    </form>
-    <p></p>
-    <center>
-    {% for item in data %}
-        <tr>
-            <td> {{item[0]}} by {{item[1]}}</td>
-            </br>
-        </tr>
-    {% endfor %}
-    </center>
-</body>
-{% endblock %} -->
+{% if posts %}
+    <ul>
+      {% for post in posts %}
+      <span class="post">
+        <span class="post-line">{{ post['title'] }}</span>
+        <span class="post-line">{{ post['content'] }}</span>
+        <span class="post-line">{{ post['url'] }}</span>
+        <span class="post-line">{{ post['created'] }}</span>
+        <span class="post-line">{{ post['category'] }}</span>
+      </span>
+      {% endfor %}
+    </ul>
+{% else %}
+    <p>no entries</p>
+{% endif %}
+{% endblock %}

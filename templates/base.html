@@ -4,9 +4,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<<<<<<< HEAD
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+=======
+>>>>>>> origin/flask-app
     <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <title>{% block title %} {% endblock %}</title>
@@ -28,6 +32,11 @@
             </ul>
         </div>
         <a id="rss" href="./rss.xml"><img width="30" src="{{url_for('static', filename='rss.svg')}}" alt="RSS"></a>
+
+        <form method="POST"  action="/search">
+          <input name="search" type="text" placeholder="Search by" value="{{ request.form['search'] }}">
+          <button type="submit">Go</button>
+        </form>
 
       </nav>
     <div class="container">
